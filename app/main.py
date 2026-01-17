@@ -14,7 +14,8 @@ class BaseRobot:
         self.weight = weight
         if isinstance(self, FlyingRobot):
             self.coords = coords or [0, 0, 0]
-        self.coords = coords or [0, 0]
+        else:
+            self.coords = coords or [0, 0]
 
     def go_forward(self, step: int = 1) -> None:
         self.coords[1] += step
@@ -39,8 +40,7 @@ class FlyingRobot(BaseRobot):
             weight: int,
             coords: list | None
     ) -> None:
-        super().__init__(name, weight)
-        self.coords = coords or [0, 0, 0]
+        super().__init__(name, weight, coords)
 
     def go_up(self, step: int = 1) -> None:
         self.coords[2] += step
